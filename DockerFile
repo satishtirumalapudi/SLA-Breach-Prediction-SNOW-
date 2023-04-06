@@ -1,0 +1,15 @@
+FROM python :3.7  
+# base image 
+COPY ./app
+WORKDIR ./app
+RUN pip install -r requirements.txt
+EXPOSE $PORT 
+# the cloud will automatically assign the port 
+CMD gunicorn --workers=4  --bind 0.0.0.0:$PORT app:app
+#gunicorn will help me run the file in heroku 
+#divide the request among 4 workers
+#bind with the local IP address this port number will be binded to heroku cloud
+
+
+#some kind of depenedenices ,configuration and kernel based issues,we have all the 
+#base configurations and use the configuration p
